@@ -8,8 +8,7 @@ export default function TabsLayout() {
             <Tabs.Screen 
                 name="feed"
                 options={{
-                    title :"Feed", 
-                    
+                    title :"Feed",
                     tabBarIcon: ({ focused }) => (
                         <Image
                         source={require('../../assets/tabs/feed.png')}
@@ -29,7 +28,7 @@ export default function TabsLayout() {
                     
                     tabBarIcon: ({ focused }) => (
                         <Image
-                        source={require('../../assets/tabs/recomecar.png')}
+                        source={require('../../assets/tabs/previsao.png')}
                         style={{
                             width: 30,
                             height: 30,
