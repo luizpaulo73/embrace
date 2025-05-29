@@ -1,77 +1,99 @@
 import { Tabs } from "expo-router";
-import { Image } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false, tabBarStyle: { backgroundColor: "#020817" } }}>
-        <Tabs.Screen 
-            name="feed"
-            options={{
-                title :"Feed", 
-                
-                tabBarIcon: ({ focused }) => (
-                    <Image
-                      source={require('../../assets/tabs/feed.png')}
-                      style={{
-                        width: 24,
-                        height: 24,
-                        tintColor: focused ? '#00CCCF' : '#94A3B8',}}
-                    />
-                ),
-                tabBarLabelStyle: { color: "#94A3B8", fontSize: 10, fontFamily: "K2D_700Bold" }
-            }}
-        />
-        <Tabs.Screen
-            name="previsoes"
-            options={{
-                title :"Previsões", 
-                
-                tabBarIcon: ({ focused }) => (
-                    <Image
-                      source={require('../../assets/tabs/previsoes.png')}
-                      style={{
-                        width: 24,
-                        height: 24,
-                        tintColor: focused ? '#00CCCF' : '#94A3B8',}}
-                    />
-                ),
-                tabBarLabelStyle: { color: "#94A3B8", fontSize: 10, fontFamily: "K2D_700Bold" }
-            }}
+    <View style={styles.container}>
+        <Tabs screenOptions={{ headerShown: false, tabBarStyle: styles.tabBar }}>
+            <Tabs.Screen 
+                name="feed"
+                options={{
+                    title :"Feed", 
+                    
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                        source={require('../../assets/tabs/feed.png')}
+                        style={{
+                            width: 30,
+                            height: 30,
+                            tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
+                        />
+                    ),
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                }}
             />
-        <Tabs.Screen
-            name="recomecar"
-            options={{
-                title :"Recomeçar", 
-                
-                tabBarIcon: ({ focused }) => (
-                    <Image
-                      source={require('../../assets/tabs/recomecar.png')}
-                      style={{
-                        width: 24,
-                        height: 24,
-                        tintColor: focused ? '#00CCCF' : '#94A3B8',}}
-                    />
-                ),
-                tabBarLabelStyle: { color: "#94A3B8", fontSize: 10, fontFamily: "K2D_700Bold" }
-            }}
-            />
-        <Tabs.Screen
-            name="conta"
-            options={{
-                title :"Conta", 
-                
-                tabBarIcon: ({ focused }) => (
-                    <Image
-                      source={require('../../assets/tabs/conta.png')}
-                      style={{
-                        width: 24,
-                        height: 24,
-                        tintColor: focused ? '#00CCCF' : '#94A3B8',}}
-                    />
-                ),
-                tabBarLabelStyle: { color: "#94A3B8", fontSize: 10, fontFamily: "K2D_700Bold" }
-            }}
-            />
-    </Tabs>
+            <Tabs.Screen
+                name="previsoes"
+                options={{
+                    title :"Previsões", 
+                    
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                        source={require('../../assets/tabs/recomecar.png')}
+                        style={{
+                            width: 30,
+                            height: 30,
+                            tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
+                        />
+                    ),
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                }}
+                />
+            <Tabs.Screen
+                name="recomecar"
+                options={{
+                    title :"Recomeçar", 
+                    
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                        source={require('../../assets/tabs/recomecar.png')}
+                        style={{
+                            width: 30,
+                            height: 30,
+                            tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
+                        />
+                    ),
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                }}
+                />
+            <Tabs.Screen
+                name="conta"
+                options={{
+                    title :"Conta", 
+                    
+                    tabBarIcon: ({ focused }) => (
+                        <Image
+                        source={require('../../assets/tabs/conta.png')}
+                        style={{
+                            width: 30,
+                            height: 30,
+                            tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
+                        />
+                    ),
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                }}
+                />
+        </Tabs>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#262624",
+    },
+    tabBar: {
+        backgroundColor: "#30302E",
+        width: "90%",
+        alignSelf: "center",
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        borderTopWidth: 1,
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderColor: "#65645F",
+        height: 70,
+        paddingTop: 10,
+    },
+});
