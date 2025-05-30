@@ -1,11 +1,12 @@
-import { View, Text } from "react-native"
+import { View, Text, ScrollView } from "react-native"
+import Post from "../../components/Post/Post";
 
 export default function Feed() {
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#262624" }}>
-            <View>
-                <Text>Feed Screen</Text>
-            </View>
+            <ScrollView style={{ width: "100%" }}>
+                <Post/>
+            </ScrollView>
         </View>
     )
 }
