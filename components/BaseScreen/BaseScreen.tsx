@@ -9,7 +9,7 @@ interface BaseScreenProps {
 export default function BaseScreen({ children, platform }: BaseScreenProps) {
     return (
         <View style={styles.container}>
-            <Header platform={platform as "embrace" | "maosDadas" | "tempoSeguro"} />
+            <Header platform={platform as "embrace" | "maosDadas" | "tempoSeguro" | "recomecar"} />
             {children}
         </View>
     )

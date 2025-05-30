@@ -12,6 +12,10 @@ const platforms = {
     tempoSeguro: {
         title: "Tempo Seguro",
         logo: require("../../assets/logos/logo_tempo_seguro.png"),
+    },
+    recomecar: {
+        title: "Recomeçar",
+        logo: require("../../assets/logos/logo_recomecar.png"),
     }
 } as const;
 
