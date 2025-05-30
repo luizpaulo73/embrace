@@ -18,7 +18,6 @@ export default function BaseScreen({ children, platform }: BaseScreenProps) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#262624"
     }
