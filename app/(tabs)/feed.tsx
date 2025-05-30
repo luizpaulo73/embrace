@@ -22,10 +22,14 @@ export default function Feed() {
                     <Text style={style.tabText}>Mapa</Text>
                 </TouchableOpacity>
             </View>
-            {/* <ScrollView style={{ width: "100%" }}>
-                <Post/>
-            </ScrollView> */}
-            <MapViewComponent/>
+            {selectedTab ? 
+                <ScrollView style={{ width: "100%" }}>
+                    <Post/>
+                </ScrollView> : 
+                <MapViewComponent/>
+            }
+            
+            
         </BaseScreen>
     )
 }

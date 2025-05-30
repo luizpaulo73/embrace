@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#65645F",
         overflow: "hidden",
-        marginTop: 20,
+        marginTop: 10,
     },
     map: {
         width: "100%",
