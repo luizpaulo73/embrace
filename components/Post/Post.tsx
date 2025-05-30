@@ -4,7 +4,7 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 export default function Feed() {
     return (
         <View style={styles.container}>
-            <View style={{ marginBottom: 20, flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
+            <View style={{ marginBottom: 5, flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
                 <View style={{ flexDirection: "row" }}>
                     <View style={styles.profileContainer}>
                         <Image
@@ -80,13 +80,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         backgroundColor: "#C2C0B6",
         borderRadius: 9999,
-        width: 60,
-        height: 60,
+        width: 50,
+        height: 50,
         overflow: "hidden",
     },
     profileImage: {
-        width: 45,
-        height: 45,
+        width: 40,
+        height: 40,
         resizeMode: "cover"
     },
     infoPost: {
