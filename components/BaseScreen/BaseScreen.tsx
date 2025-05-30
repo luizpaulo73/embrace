@@ -1,12 +1,15 @@
 import { StyleSheet, View } from "react-native";
+import Header from "../Header/Header";
 
 interface BaseScreenProps {
-    children: React.ReactNode; 
+    children: React.ReactNode;
+    platform: string;
 }
 
-export default function BaseScreen({ children }: BaseScreenProps) {
+export default function BaseScreen({ children, platform }: BaseScreenProps) {
     return (
         <View style={styles.container}>
+            <Header platform={platform as "embrace" | "maosDadas" | "tempoSeguro"} />
             {children}
         </View>
     )

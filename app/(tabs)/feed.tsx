@@ -4,7 +4,7 @@ import BaseScreen from "../../components/BaseScreen/BaseScreen";
 
 export default function Feed() {
     return (
-        <BaseScreen>
+        <BaseScreen platform="maosDadas">
             <ScrollView style={{ width: "100%" }}>
                 <Post/>
             </ScrollView>
