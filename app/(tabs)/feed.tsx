@@ -3,6 +3,7 @@ import Post from "../../components/Post/Post";
 import BaseScreen from "../../components/BaseScreen/BaseScreen";
 import { useState } from "react";
 import MapViewComponent from "../../components/MapVIewCompoent/MapViewComponent";
+import MinimalPost from "../../components/MinimalPost/MinimalPost";
 
 export default function Feed() {
 
@@ -26,7 +27,13 @@ export default function Feed() {
                 <ScrollView style={{ width: "100%" }}>
                     <Post/>
                 </ScrollView> : 
-                <MapViewComponent/>
+                <>
+                    <MapViewComponent/>
+                    <Text style={{ color: "#fff", fontSize: 20, textAlign: "left", marginTop: 10, width: "90%" }}>Pontos Próximos</Text>
+                    <ScrollView style={{ width: "100%" }}>
+                        <MinimalPost />
+                    </ScrollView>
+                </>
             }
             
             
