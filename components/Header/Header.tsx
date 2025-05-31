@@ -2,7 +2,7 @@ import { View, Image, StyleSheet, Text } from 'react-native'
 
 const platforms = {
     embrace: {
-        title: "Embrace",
+        title: "",
         logo: require("../../assets/logos/logo_embrace.png"),
     },
     maosDadas: {
