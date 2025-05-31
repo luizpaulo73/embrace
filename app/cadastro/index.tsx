@@ -2,7 +2,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from "reac
 import BaseScreen from "../../components/BaseScreen/BaseScreen";
 import { Link } from "expo-router";
 
-export default function index() {
+export default function Cadastro() {
     return (
         <BaseScreen platform="embrace">
             <Text style={styles.title}>Cadastro</Text>
