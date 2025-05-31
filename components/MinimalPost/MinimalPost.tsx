@@ -1,5 +1,4 @@
-import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native'
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 
 export default function MinimalPost() {
     return (
