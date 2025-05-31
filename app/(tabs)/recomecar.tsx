@@ -1,11 +1,11 @@
 import { View, Text } from "react-native"
+import CardRecomecar from "../../components/CardRecomecar/CardRecomecar"
+import BaseScreen from "../../components/BaseScreen/BaseScreen"
 
 export default function Recomecar() {
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#262624" }}>
-            <View>
-                <Text>Recomecar Screen</Text>
-            </View>
-        </View>
+        <BaseScreen platform="recomecar">
+            <CardRecomecar />
+        </BaseScreen>
     )
 }
