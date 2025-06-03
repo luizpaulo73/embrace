@@ -2,12 +2,15 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 interface FormInput {
+    nome: string;
     titulo: string;
     cep: string;
     cidade: string;
     estado: string;
     tipoCampanha: string;
+    voluntariosCadastrados: number;
     voluntariosNecessarios: number;
+    createdAt: string; 
 }
 
 interface PostProps {
@@ -38,11 +41,11 @@ export default function Post({ formInput }: PostProps) {
                                 source={require("../../assets/icons/pin.png")}
                                 style={{ width: 10, height: 14, marginLeft: 8 }}
                             />
-                            <Text style={styles.infoPost}>São Paulo, SP</Text>
+                            <Text style={styles.infoPost}>{formInput.cidade}, {formInput.estado}</Text>
                         </View>
                     </View>
                 </View>
-                <Text style={styles.typePost}>Saúde</Text>
+                <Text style={styles.typePost}>{formInput.tipoCampanha}</Text>
             </View>
 
             <Text style={styles.descPost}>{formInput.titulo}</Text>
@@ -65,7 +68,7 @@ export default function Post({ formInput }: PostProps) {
                     />
                 </TouchableOpacity>
             </View>
-            <ProgressBar />
+            <ProgressBar/>
         </View>
     )
 }

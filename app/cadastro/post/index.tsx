@@ -6,31 +6,44 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function CadastroPost() {
 
     const [formInput, setFormInput] = useState({
+        nome: '',
         titulo: '',
         cep: '',
         cidade: '',
         estado: '',
         tipoCampanha: '',
-        voluntariosNecessarios: 0
+        voluntariosCadastrados: 0,
+        voluntariosNecessarios: 0,
+        createdAt: ''
     });
 
     async function handleCreatePost() {
         let data = [];
 
         if (await AsyncStorage.getItem('posts') != null) {
-            data = JSON.parse(await AsyncStorage.getItem('posts') || '');
+            data = JSON.parse(await AsyncStorage.getItem('posts') || '[]');
         }
 
-        data.push(formInput);
+        const postWithDate = {
+            ...formInput,
+            createdAt: new Date().toISOString(),
+        };
+
+        data.push(postWithDate);
         await AsyncStorage.setItem('posts', JSON.stringify(data));
+
         alert('Post criado com sucesso!');
+
         setFormInput({
+            nome: '',
             titulo: '',
             cep: '',
             cidade: '',
             estado: '',
             tipoCampanha: '',
-            voluntariosNecessarios: 0
+            voluntariosCadastrados: 0,
+            voluntariosNecessarios: 0,
+            createdAt: ''
         });
     }
 
@@ -38,6 +51,13 @@ export default function CadastroPost() {
         <BaseScreen platform="maosDadas">
             <Text style={styles.title}>Novo Post</Text>
             <View style={styles.form}>
+                <Text style={styles.inputLabel}>Nome</Text>
+                <TextInput
+                    style={styles.input}
+                    value={formInput.nome}
+                    onChangeText={(text) => setFormInput({ ...formInput, nome: text })}
+                />
+
                 <Text style={styles.inputLabel}>Título</Text>
                 <TextInput
                     style={styles.input}
