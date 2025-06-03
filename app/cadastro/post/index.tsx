@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    Image,
+    StyleSheet,
+    Platform,
 } from 'react-native';
 import BaseScreen from '../../../components/BaseScreen/BaseScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 export default function CadastroPost() {
     const [formInput, setFormInput] = useState({
@@ -57,9 +56,9 @@ export default function CadastroPost() {
         });
     }
 
-    const [valueMoto, setValueMoto] = useState(null);
-    const [openMoto, setOpenMoto] = useState(false);
-    const [itemsMoto, setItemsMoto] = useState([
+    const [valueType, setValueType] = useState(null);
+    const [openMoto, setOpenType] = useState(false);
+    const [itemsType, setItemsType] = useState([
         { label: 'Moto 1', value: 'moto1' },
         { label: 'Moto 2', value: 'moto2' },
         { label: 'Moto 3', value: 'moto3' },
@@ -67,96 +66,93 @@ export default function CadastroPost() {
 
     return (
         <BaseScreen platform="maosDadas">
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={{ flex: 1 }}
-                keyboardVerticalOffset={100}
+            <KeyboardAwareScrollView
+                contentContainerStyle={styles.scrollContainer}
+                keyboardShouldPersistTaps="handled"
+                enableOnAndroid={true}
+                extraScrollHeight={100}
+                nestedScrollEnabled={true}
             >
-                <ScrollView
-                    contentContainerStyle={styles.scrollContainer}
-                    keyboardShouldPersistTaps="handled"
-                >
-                    <Text style={styles.title}>Novo Post</Text>
+                <Text style={styles.title}>Novo Post</Text>
 
-                    <View style={styles.form}>
-                        <Text style={styles.inputLabel}>Nome</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={formInput.nome}
-                            onChangeText={(text) => setFormInput({ ...formInput, nome: text })}
-                        />
+                <View style={styles.form}>
+                    <Text style={styles.inputLabel}>Nome</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={formInput.nome}
+                        onChangeText={(text) => setFormInput({ ...formInput, nome: text })}
+                    />
 
-                        <Text style={styles.inputLabel}>Título</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={formInput.titulo}
-                            onChangeText={(text) => setFormInput({ ...formInput, titulo: text })}
-                        />
+                    <Text style={styles.inputLabel}>Título</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={formInput.titulo}
+                        onChangeText={(text) => setFormInput({ ...formInput, titulo: text })}
+                    />
 
-                        <Text style={styles.inputLabel}>CEP</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={formInput.cep}
-                            onChangeText={(text) => setFormInput({ ...formInput, cep: text })}
-                        />
+                    <Text style={styles.inputLabel}>CEP</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={formInput.cep}
+                        onChangeText={(text) => setFormInput({ ...formInput, cep: text })}
+                    />
 
-                        <View style={styles.row}>
-                            <View style={{ width: '65%' }}>
-                                <Text style={styles.inputLabel}>Cidade</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={formInput.cidade}
-                                    onChangeText={(text) => setFormInput({ ...formInput, cidade: text })}
-                                />
-                            </View>
-                            <View style={{ width: '40%' }}>
-                                <Text style={styles.inputLabel}>Estado</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    value={formInput.estado}
-                                    onChangeText={(text) => setFormInput({ ...formInput, estado: text })}
-                                />
-                            </View>
+                    <View style={styles.row}>
+                        <View style={{ width: '65%' }}>
+                            <Text style={styles.inputLabel}>Cidade</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={formInput.cidade}
+                                onChangeText={(text) => setFormInput({ ...formInput, cidade: text })}
+                            />
                         </View>
-
-                        <Text style={styles.inputLabel}>Tipo da Campanha</Text>
-                        <DropDownPicker
-                            open={openMoto}
-                            value={valueMoto}
-                            items={itemsMoto}
-                            setOpen={setOpenMoto}
-                            setValue={setValueMoto}
-                            setItems={setItemsMoto}
-                            placeholder="Selecione a campanha"
-                            style={styles.input}
-                            dropDownContainerStyle={styles.dropdownContainer}
-                            textStyle={styles.labelDropdown}
-                            zIndex={2000}
-                        />
-
-                        <Text style={styles.inputLabel}>Voluntários Necessários</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={formInput.voluntariosNecessarios.toString()}
-                            keyboardType="numeric"
-                            onChangeText={(text) => setFormInput({
-                                ...formInput,
-                                voluntariosNecessarios: parseInt(text) || 0
-                            })}
-                        />
+                        <View style={{ width: '40%' }}>
+                            <Text style={styles.inputLabel}>Estado</Text>
+                            <TextInput
+                                style={styles.input}
+                                value={formInput.estado}
+                                onChangeText={(text) => setFormInput({ ...formInput, estado: text })}
+                            />
+                        </View>
                     </View>
 
-                    <TouchableOpacity style={styles.button} onPress={handleCreatePost}>
-                        <Image source={require('../../../assets/icons/help_heart.png')} style={{ width: 24, height: 20 }} />
-                        <Text style={styles.buttonText}>Criar Post</Text>
-                    </TouchableOpacity>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                    <Text style={styles.inputLabel}>Tipo da Campanha</Text>
+                    <DropDownPicker
+                        open={openMoto}
+                        value={valueType}
+                        items={itemsType}
+                        setOpen={setOpenType}
+                        setValue={setValueType}
+                        setItems={setItemsType}
+                        placeholder="Selecione a campanha"
+                        style={styles.input}
+                        dropDownContainerStyle={styles.dropdownContainer}
+                        textStyle={styles.labelDropdown}
+                        zIndex={2000}
+                    />
+
+                    <Text style={styles.inputLabel}>Voluntários Necessários</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={formInput.voluntariosNecessarios.toString()}
+                        keyboardType="numeric"
+                        onChangeText={(text) => setFormInput({
+                            ...formInput,
+                            voluntariosNecessarios: parseInt(text) || 0
+                        })}
+                    />
+                </View>
+
+                <TouchableOpacity style={styles.button} onPress={handleCreatePost}>
+                    <Image source={require('../../../assets/icons/help_heart.png')} style={{ width: 24, height: 20 }} />
+                    <Text style={styles.buttonText}>Criar Post</Text>
+                </TouchableOpacity>
+            </KeyboardAwareScrollView>
         </BaseScreen>
     );
-    }
+}
 
-    const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     scrollContainer: {
         paddingBottom: 40,
     },
