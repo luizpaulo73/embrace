@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { timeAgo } from "../../utils/timeAgo";
 
 interface FormInput {
     nome: string;
@@ -30,18 +31,18 @@ export default function Post({ formInput }: PostProps) {
                         />
                     </View>
                     <View>
-                        <Text style={styles.text}>Hospital xyz</Text>
+                        <Text style={styles.text}>{formInput.nome}</Text>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Image
                                 source={require("../../assets/icons/clock.png")}
                                 style={{ width: 20, height: 20, marginLeft: 8 }}
                             />
-                            <Text style={styles.infoPost}>2h</Text>
+                            <Text style={styles.infoPost}>{timeAgo(formInput.createdAt)}</Text>
                             <Image
                                 source={require("../../assets/icons/pin.png")}
                                 style={{ width: 10, height: 14, marginLeft: 8 }}
                             />
-                            <Text style={styles.infoPost}>{formInput.cidade}, {formInput.estado}</Text>
+                            <Text style={styles.infoPost}>{formInput.cidade}, {formInput.estado.toUpperCase()}</Text>
                         </View>
                     </View>
                 </View>
@@ -68,7 +69,7 @@ export default function Post({ formInput }: PostProps) {
                     />
                 </TouchableOpacity>
             </View>
-            <ProgressBar/>
+            <ProgressBar cadastrados={formInput.voluntariosCadastrados} necessarios={formInput.voluntariosNecessarios}/>
         </View>
     )
 }
