@@ -40,16 +40,18 @@ export default function Feed() {
                 </TouchableOpacity>
             </View>
             {selectedTab ?
-                <View style={{ width: "100%"}}>
+                <View style={{ width: "100%", flex: 1}}>
                     {posts.length === 0 ?
                         <Text style={{ color: "#fff", fontSize: 20, textAlign: "center", marginTop: 20 }}>
                             Nenhum post encontrado
                         </Text> : 
-                        <FlatList
-                            data={posts}
-                            keyExtractor={(item, index) => index.toString()}
-                            renderItem={({ item }) => <Post formInput={item} />}
-                            contentContainerStyle={{ paddingBottom: 20 }}></FlatList>}
+                            <FlatList
+                                data={posts}
+                                keyExtractor={(item, index) => index.toString()}
+                                renderItem={({ item }) => <Post formInput={item} />}
+                                contentContainerStyle={{ paddingBottom: 20 }}></FlatList>
+                    }
+                        
                 </View> : 
                 <>
                     <MapViewComponent/>
