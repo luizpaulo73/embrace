@@ -1,7 +1,21 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-export default function Feed() {
+interface FormInput {
+    titulo: string;
+    cep: string;
+    cidade: string;
+    estado: string;
+    tipoCampanha: string;
+    voluntariosNecessarios: number;
+}
+
+interface PostProps {
+  formInput: FormInput;
+}
+
+export default function Post({ formInput }: PostProps) {
+
     return (
         <View style={styles.container}>
             <View style={{ marginBottom: 5, flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
@@ -31,7 +45,7 @@ export default function Feed() {
                 <Text style={styles.typePost}>Saúde</Text>
             </View>
 
-            <Text style={styles.descPost}>Precisamos de voluntários para a nossa campanha de vacinação</Text>
+            <Text style={styles.descPost}>{formInput.titulo}</Text>
             <Image
                 source={require("../../assets/postPictures/vaccine.png")}
                 style={{ width: "100%", borderRadius: 16, marginTop: 10 }}

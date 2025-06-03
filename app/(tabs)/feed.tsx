@@ -1,16 +1,32 @@
-import { ScrollView, TouchableOpacity, View, Text, StyleSheet } from "react-native"
+import { ScrollView, TouchableOpacity, View, Text, StyleSheet, FlatList } from "react-native"
 import Post from "../../components/Post/Post";
 import BaseScreen from "../../components/BaseScreen/BaseScreen";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MapViewComponent from "../../components/MapVIewCompoent/MapViewComponent";
 import MinimalPost from "../../components/MinimalPost/MinimalPost";
+import { Link } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Feed() {
 
     const [selectedTab, setSelectedTab] = useState<boolean>(true);
 
+
     const handleTabPress = () => {
         setSelectedTab(!selectedTab);
+    }
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    async function fetchPosts() {
+        const posts = await AsyncStorage.getItem('posts');
+        if (posts) {
+            setPosts(JSON.parse(posts));
+        }
     }
 
     return (
@@ -23,10 +39,18 @@ export default function Feed() {
                     <Text style={style.tabText}>Mapa</Text>
                 </TouchableOpacity>
             </View>
-            {selectedTab ? 
-                <ScrollView style={{ width: "100%" }}>
-                    <Post/>
-                </ScrollView> : 
+            {selectedTab ?
+                <View style={{ width: "100%"}}>
+                    {posts.length === 0 ?
+                        <Text style={{ color: "#fff", fontSize: 20, textAlign: "center", marginTop: 20 }}>
+                            Nenhum post encontrado
+                        </Text> : 
+                        <FlatList
+                            data={posts}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item }) => <Post formInput={item} />}
+                            contentContainerStyle={{ paddingBottom: 20 }}></FlatList>}
+                </View> : 
                 <>
                     <MapViewComponent/>
                     <Text style={{ color: "#fff", fontSize: 20, textAlign: "left", marginTop: 10, width: "90%" }}>Pontos Próximos</Text>
@@ -36,7 +60,9 @@ export default function Feed() {
                 </>
             }
             
-            
+            <Link href={"/cadastro/post"} style={style.addButton}>
+                <Text style={style.textAdd}>+</Text>
+            </Link>
         </BaseScreen>
     )
 }
@@ -65,4 +91,21 @@ const style = StyleSheet.create({
         textAlign: "center",
         fontFamily: "K2D_700Bold",
     },
+    addButton: {
+        position: "absolute",
+        bottom: 20,
+        right: 20,
+        width: 60,
+        height: 60,
+        backgroundColor: "#00BAFF",
+        borderRadius: 9999,
+    },
+    textAdd: {
+        fontSize: 40,
+        color: "#fff",
+        fontFamily: "K2D_700Bold",
+        textAlign: "center",
+        verticalAlign: "middle",
+        lineHeight: 60,
+    }  
 })
