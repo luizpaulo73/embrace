@@ -6,7 +6,6 @@ import {
     TouchableOpacity,
     Image,
     StyleSheet,
-    Platform,
 } from 'react-native';
 import BaseScreen from '../../../components/BaseScreen/BaseScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
