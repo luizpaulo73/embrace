@@ -12,7 +12,7 @@ export const logout = async () => {
     await AsyncStorage.removeItem("isLoggedIn");
 }
 
-export const isLoggedIn = async () => {
-    const value = await AsyncStorage.getItem("isLoggedIn");
-    return value === "true";
+export const checkLogin = async () => {
+    const logged = await AsyncStorage.getItem("isLoggedIn");
+    return logged === "true";
 }

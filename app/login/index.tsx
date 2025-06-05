@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import BaseScreen from '../../components/BaseScreen/BaseScreen'
-import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet } from 'react-native'
+import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet, Alert } from 'react-native'
 import { Link, router } from 'expo-router';
 import { login } from '../../service/auth';
 
@@ -13,13 +13,20 @@ export default function Login() {
         const sucess = await login(email, password);
         if (sucess) {
             router.push('/conta');
+        } else {
+            Alert.alert('Erro', 'Email ou senha incorretos');
         }
     }
 
     return (
         <BaseScreen platform="embrace">
             <View style={{ width: '100%', justifyContent: "center", alignItems: "center" }}>
-                <Text style={styles.title}>Bem Vindo de volta!</Text>
+                <View style={{ width: '90%', flexDirection: "row", alignItems: "center", gap: 10, height: 50 }}>
+                    <TouchableOpacity onPress={() => router.push("/")}>
+                        <Image source={require("../../assets/icons/back.png")} style={{width: 20, height: 14, marginTop: 20}}/>
+                    </TouchableOpacity>
+                    <Text style={styles.title}>Bem Vindo de Volta!</Text>
+                </View>
                 <Text style={styles.title}>Login</Text>
                 <View style={styles.form}>
                     <Text style={styles.inputLabel}>Email</Text>
@@ -37,7 +44,7 @@ export default function Login() {
                     />
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => {handleLogin}}>
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
                     <Image source={require('../../assets/icons/help_heart.png')} style={{ width: 24, height: 20 }} />
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>

@@ -1,11 +1,16 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
 import BaseScreen from "../../components/BaseScreen/BaseScreen";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 export default function Cadastro() {
     return (
         <BaseScreen platform="embrace">
-            <Text style={styles.title}>Cadastro</Text>
+            <View style={{ width: '90%', flexDirection: "row", alignItems: "center", gap: 10, height: 50 }}>
+                <TouchableOpacity onPress={() => router.push("/")}>
+                    <Image source={require("../../assets/icons/back.png")} style={{width: 20, height: 14, marginTop: 20}}/>
+                </TouchableOpacity>
+                <Text style={styles.title}>Cadastro</Text>
+            </View>
             <View style={styles.form}>
                 <Text style={styles.inputLabel}>Nome</Text>
                 <TextInput style={styles.input}/>
