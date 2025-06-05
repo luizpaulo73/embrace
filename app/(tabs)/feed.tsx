@@ -9,13 +9,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Feed() {
 
-    const [selectedTab, setSelectedTab] = useState<boolean>(true);
-
-
-    const handleTabPress = () => {
-        setSelectedTab(!selectedTab);
-    }
-
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -31,15 +24,6 @@ export default function Feed() {
 
     return (
         <BaseScreen platform="maosDadas">
-             <View style={style.toggleButton}>
-                <TouchableOpacity style={[style.tab, {backgroundColor: selectedTab ? "#00BAFF" : "transparent"}]} onPress={handleTabPress}>
-                    <Text style={style.tabText}>Posts</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[style.tab, {backgroundColor: !selectedTab ? "#00BAFF" : "transparent"}]} onPress={handleTabPress}>
-                    <Text style={style.tabText}>Mapa</Text>
-                </TouchableOpacity>
-            </View>
-            {selectedTab ?
                 <View style={{ width: "100%", flex: 1}}>
                     {posts.length === 0 ?
                         <Text style={{ color: "#fff", fontSize: 20, textAlign: "center", marginTop: 20 }}>
@@ -52,15 +36,7 @@ export default function Feed() {
                                 contentContainerStyle={{ paddingBottom: 20 }}></FlatList>
                     }
                         
-                </View> : 
-                <>
-                    <MapViewComponent/>
-                    <Text style={{ color: "#fff", fontSize: 20, textAlign: "left", marginTop: 10, width: "90%" }}>Pontos Próximos</Text>
-                    <ScrollView style={{ width: "100%" }}>
-                        <MinimalPost />
-                    </ScrollView>
-                </>
-            }
+                </View>
             
             <Link href={"/cadastro/post"} style={style.addButton}>
                 <Text style={style.textAdd}>+</Text>

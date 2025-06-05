@@ -22,15 +22,15 @@ export default function TabsLayout() {
                 }}
             />
             <Tabs.Screen
-                name="previsoes"
+                name="mapa"
                 options={{
-                    title :"Previsões", 
+                    title :"Mapa", 
                     
                     tabBarIcon: ({ focused }) => (
                         <Image
-                        source={require('../../assets/tabs/previsao.png')}
+                        source={require('../../assets/icons/pin.png')}
                         style={{
-                            width: 30,
+                            width: 21,
                             height: 30,
                             tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
                         />
