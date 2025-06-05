@@ -11,6 +11,7 @@ import BaseScreen from '../../../components/BaseScreen/BaseScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
 import tiposCampanha from '../../../data/tiposCampanha.json'
+import { router } from 'expo-router';
 
 export default function CadastroPost() {
     const [formInput, setFormInput] = useState({
@@ -90,8 +91,12 @@ export default function CadastroPost() {
     return (
         <BaseScreen platform="maosDadas">
             <View style={{ width: '100%' }}>
-                <Text style={styles.title}>Novo Post</Text>
-
+                <View style={{ width: '90%', flexDirection: "row", alignItems: "center", gap: 10, height: 50 }}>
+                    <TouchableOpacity onPress={() => router.push("/feed")}>
+                        <Image source={require("../../../assets/icons/back.png")} style={{width: 20, height: 14, marginTop: 20, marginLeft: 22}}/>
+                    </TouchableOpacity>
+                    <Text style={styles.title}>Novo Post</Text>
+                </View>
                 <View style={styles.form}>
                     <Text style={styles.inputLabel}>Nome</Text>
                     <TextInput
