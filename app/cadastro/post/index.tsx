@@ -10,7 +10,7 @@ import {
 import BaseScreen from '../../../components/BaseScreen/BaseScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import tiposCampanha from '../../../data/tiposCampanha.json'
 
 export default function CadastroPost() {
     const [formInput, setFormInput] = useState({
@@ -57,14 +57,10 @@ export default function CadastroPost() {
 
     const [valueType, setValueType] = useState(null);
     const [openMoto, setOpenType] = useState(false);
-    const [itemsType, setItemsType] = useState([
-        { label: 'Moto 1', value: 'moto1' },
-        { label: 'Moto 2', value: 'moto2' },
-        { label: 'Moto 3', value: 'moto3' },
-    ]);
+    const [itemsType, setItemsType] = useState(tiposCampanha);
 
     async function buscarEnderecoPorCep(cep: string) {
-        const cepLimpo = cep.replace(/\D/g, ''); // Remove caracteres não numéricos
+        const cepLimpo = cep.replace(/\D/g, '');
 
         if (cepLimpo.length !== 8) {
             alert('CEP inválido. Digite 8 números.');
