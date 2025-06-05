@@ -63,15 +63,37 @@ export default function CadastroPost() {
         { label: 'Moto 3', value: 'moto3' },
     ]);
 
+    async function buscarEnderecoPorCep(cep: string) {
+        const cepLimpo = cep.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+        if (cepLimpo.length !== 8) {
+            alert('CEP inválido. Digite 8 números.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+            const data = await response.json();
+
+            if (data.erro) {
+                alert('CEP não encontrado.');
+                return;
+            }
+
+            setFormInput((prevState) => ({
+                ...prevState,
+                cidade: data.localidade,
+                estado: data.uf,
+            }));
+        } catch (error) {
+            alert('Erro ao buscar o CEP');
+            console.error(error);
+        }
+    }
+
     return (
         <BaseScreen platform="maosDadas">
-            <KeyboardAwareScrollView
-                contentContainerStyle={styles.scrollContainer}
-                keyboardShouldPersistTaps="handled"
-                enableOnAndroid={true}
-                extraScrollHeight={100}
-                nestedScrollEnabled={true}
-            >
+            <View style={{ width: '100%' }}>
                 <Text style={styles.title}>Novo Post</Text>
 
                 <View style={styles.form}>
@@ -94,6 +116,8 @@ export default function CadastroPost() {
                         style={styles.input}
                         value={formInput.cep}
                         onChangeText={(text) => setFormInput({ ...formInput, cep: text })}
+                        onBlur={() => buscarEnderecoPorCep(formInput.cep)}
+                        keyboardType="numeric"
                     />
 
                     <View style={styles.row}>
@@ -146,7 +170,7 @@ export default function CadastroPost() {
                     <Image source={require('../../../assets/icons/help_heart.png')} style={{ width: 24, height: 20 }} />
                     <Text style={styles.buttonText}>Criar Post</Text>
                 </TouchableOpacity>
-            </KeyboardAwareScrollView>
+            </View>
         </BaseScreen>
     );
 }
