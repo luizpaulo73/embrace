@@ -1,7 +1,20 @@
 import React from 'react'
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'
+import { timeAgo } from '../../utils/timeAgo';
 
-export default function CardRecomecar() {
+interface FormInput {
+    titulo: string;
+    cep: string;
+    cidade: string;
+    estado: string;
+    createdAt: string; 
+}
+
+interface PostProps {
+    formInput: FormInput;
+}
+
+export default function CardRecomecar({ formInput }: PostProps) {
     return (
         <View style={styles.container}>
             <View style={{ marginBottom: 5, flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
@@ -13,18 +26,18 @@ export default function CardRecomecar() {
                         />
                     </View>
                     <View>
-                        <Text style={styles.text}>Doação de Materiais de Construção</Text>
+                        <Text style={styles.text}>{formInput.titulo}</Text>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                             <Image
                                 source={require("../../assets/icons/clock.png")}
                                 style={{ width: 20, height: 20, marginLeft: 8 }}
                             />
-                            <Text style={styles.infoPost}>2h</Text>
+                            <Text style={styles.infoPost}>{timeAgo(formInput.createdAt)}</Text>
                             <Image
                                 source={require("../../assets/icons/pin.png")}
                                 style={{ width: 10, height: 14, marginLeft: 8 }}
                             />
-                            <Text style={styles.infoPost}>São Paulo, SP</Text>
+                            <Text style={styles.infoPost}>{formInput.cidade}, {formInput.estado}</Text>
                         </View>
                     </View>
                 </View>
