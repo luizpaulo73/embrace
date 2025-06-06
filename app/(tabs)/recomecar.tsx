@@ -1,12 +1,40 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, FlatList } from "react-native"
 import CardRecomecar from "../../components/CardRecomecar/CardRecomecar"
 import BaseScreen from "../../components/BaseScreen/BaseScreen"
 import { Link } from "expo-router"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 
 export default function Recomecar() {
+
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    async function fetchPosts() {
+        const posts = await AsyncStorage.getItem('postsRecomecar');
+        if (posts) {
+            setPosts(JSON.parse(posts));
+        }
+    }
+
     return (
         <BaseScreen platform="recomecar">
-            <CardRecomecar />
+            <View style={{ width: "100%", flex: 1}}>
+                {posts.length === 0 ?
+                    <Text style={{ color: "#fff", fontSize: 20, textAlign: "center", marginTop: 20 }}>
+                        Nenhum post encontrado
+                    </Text> : 
+                        <FlatList
+                            data={posts}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item }) => <CardRecomecar formInput={item} />}
+                            contentContainerStyle={{ paddingBottom: 20 }}></FlatList>
+                }
+                    
+            </View>
             <Link href={"/cadastro/recomeco"} style={style.addButton}>
                 <Text style={style.textAdd}>+</Text>
             </Link>
