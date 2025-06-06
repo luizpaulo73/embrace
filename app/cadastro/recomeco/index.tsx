@@ -15,7 +15,6 @@ import { router } from 'expo-router';
 
 export default function CadastroPost() {
     const [formInput, setFormInput] = useState({
-        nome: '',
         titulo: '',
         cep: '',
         cidade: '',
@@ -41,7 +40,6 @@ export default function CadastroPost() {
         alert('Post criado com sucesso!');
 
         setFormInput({
-            nome: '',
             titulo: '',
             cep: '',
             cidade: '',
@@ -92,12 +90,6 @@ export default function CadastroPost() {
                     <Text style={styles.title}>Novo Post Recomeçar</Text>
                 </View>
                 <View style={styles.form}>
-                    <Text style={styles.inputLabel}>Nome</Text>
-                    <TextInput
-                        style={styles.input}
-                        value={formInput.nome}
-                        onChangeText={(text) => setFormInput({ ...formInput, nome: text })}
-                    />
 
                     <Text style={styles.inputLabel}>Título</Text>
                     <TextInput
