@@ -57,7 +57,7 @@ export default function CadastroPost() {
     }
 
     const [valueType, setValueType] = useState(null);
-    const [openMoto, setOpenType] = useState(false);
+    const [openType, setOpenType] = useState(false);
     const [itemsType, setItemsType] = useState(tiposCampanha);
 
     async function buscarEnderecoPorCep(cep: string) {
@@ -142,7 +142,7 @@ export default function CadastroPost() {
 
                     <Text style={styles.inputLabel}>Tipo da Campanha</Text>
                     <DropDownPicker
-                        open={openMoto}
+                        open={openType}
                         value={valueType}
                         items={itemsType}
                         setOpen={setOpenType}
