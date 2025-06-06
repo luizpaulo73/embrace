@@ -1,9 +1,7 @@
-import { ScrollView, TouchableOpacity, View, Text, StyleSheet, FlatList } from "react-native"
+import { View, Text, StyleSheet, FlatList } from "react-native"
 import Post from "../../components/Post/Post";
 import BaseScreen from "../../components/BaseScreen/BaseScreen";
 import { useState, useEffect } from "react";
-import MapViewComponent from "../../components/MapVIewCompoent/MapViewComponent";
-import MinimalPost from "../../components/MinimalPost/MinimalPost";
 import { Link } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
