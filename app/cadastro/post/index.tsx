@@ -20,6 +20,8 @@ export default function CadastroPost() {
         cep: '',
         cidade: '',
         estado: '',
+        latitude: '',
+        longitude: '',
         tipoCampanha: '',
         voluntariosCadastrados: 0,
         voluntariosNecessarios: 0,
@@ -49,6 +51,8 @@ export default function CadastroPost() {
             cep: '',
             cidade: '',
             estado: '',
+            latitude: '',
+            longitude: '',
             tipoCampanha: '',
             voluntariosCadastrados: 0,
             voluntariosNecessarios: 0,
@@ -69,24 +73,36 @@ export default function CadastroPost() {
         }
 
         try {
-            const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+            const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${cepLimpo}`);
             const data = await response.json();
 
-            if (data.erro) {
-                alert('CEP não encontrado.');
-                return;
+            if (!data || data?.message === 'CEP não encontrado') {
+            alert('CEP não encontrado.');
+            return;
+            }
+
+            const { city, state, location } = data;
+
+            let latitude = null;
+            let longitude = null;
+
+            if (location && Array.isArray(location.coordinates)) {
+            [longitude, latitude] = location.coordinates;
             }
 
             setFormInput((prevState) => ({
-                ...prevState,
-                cidade: data.localidade,
-                estado: data.uf,
+            ...prevState,
+            cidade: city,
+            estado: state,
+            latitude: latitude ?? '',
+            longitude: longitude ?? '',
             }));
         } catch (error) {
             alert('Erro ao buscar o CEP');
             console.error(error);
         }
     }
+
 
     return (
         <BaseScreen platform="maosDadas">
