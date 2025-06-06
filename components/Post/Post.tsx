@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { timeAgo } from "../../utils/timeAgo";
+import { router } from "expo-router";
 
 interface FormInput {
     nome: string;
@@ -8,6 +9,8 @@ interface FormInput {
     cep: string;
     cidade: string;
     estado: string;
+    latitude: string;
+    longitude: string;
     tipoCampanha: string;
     voluntariosCadastrados: number;
     voluntariosNecessarios: number;
@@ -55,13 +58,14 @@ export default function Post({ formInput }: PostProps) {
                 style={{ width: "100%", borderRadius: 16, marginTop: 10 }}
             />
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => router.push({pathname: "/post/mapa", params: {latitude: formInput.latitude, longitude: formInput.longitude}})}>
                     <Image
                         source={require("../../assets/icons/help_heart.png")}
                         style={{ width: 18, height: 15 }}
                     />
                     <Text style={styles.textButton}>Quero Ajudar</Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity style={styles.buttonShare}>
                     <Image
                         source={require("../../assets/icons/share.png")}
