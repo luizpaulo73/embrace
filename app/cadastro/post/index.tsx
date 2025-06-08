@@ -29,6 +29,41 @@ export default function CadastroPost() {
     });
 
     async function handleCreatePost() {
+        if (!formInput.nome.trim()) {
+            alert('Por favor, preencha o nome.');
+            return;
+        }
+
+        if (!formInput.titulo.trim()) {
+            alert('Por favor, preencha o título.');
+            return;
+        }
+
+        if (!formInput.cep.trim() || formInput.cep.length !== 8) {
+            alert('Por favor, insira um CEP válido com 8 dígitos.');
+            return;
+        }
+
+        if (!formInput.cidade.trim()) {
+            alert('Por favor, preencha a cidade.');
+            return;
+        }
+
+        if (!formInput.estado.trim()) {
+            alert('Por favor, preencha o estado.');
+            return;
+        }
+
+        if (!valueType) {
+            alert('Por favor, selecione um tipo de campanha.');
+            return;
+        }
+
+        if (formInput.voluntariosNecessarios <= 0) {
+            alert('Informe um número válido de voluntários necessários.');
+            return;
+        }
+
         let data = [];
 
         if (await AsyncStorage.getItem('posts') != null) {
@@ -59,7 +94,9 @@ export default function CadastroPost() {
             voluntariosNecessarios: 0,
             createdAt: ''
         });
+        setValueType(null);
     }
+
 
     const [valueType, setValueType] = useState(null);
     const [openType, setOpenType] = useState(false);
