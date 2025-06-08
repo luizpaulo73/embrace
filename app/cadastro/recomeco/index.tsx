@@ -10,7 +10,7 @@ import {
 import BaseScreen from '../../../components/BaseScreen/BaseScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
-import tiposCampanha from '../../../data/tiposCampanha.json'
+import tiposCampanha from '../../../data/tiposPostRecomecar.json'
 import { router } from 'expo-router';
 
 export default function CadastroPost() {
@@ -47,11 +47,6 @@ export default function CadastroPost() {
             return;
         }
 
-        if (!formInput.tipoCampanha) {
-            alert('Selecione o tipo da campanha.');
-            return;
-        }
-
         try {
             let data = [];
 
@@ -62,7 +57,9 @@ export default function CadastroPost() {
 
             const postWithDate = {
                 ...formInput,
+                tipoCampanha: valueType,
                 createdAt: new Date().toISOString(),
+                
             };
 
             data.push(postWithDate);
