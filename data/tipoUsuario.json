@@ -1,0 +1,5 @@
+[
+    { "label": "Voluntário", "value": "voluntario" },
+    { "label": "ONG", "value": "ong" },
+    { "label": "Coletivo", "value": "coletivo" }
+]
