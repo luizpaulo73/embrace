@@ -77,8 +77,8 @@ export default function CadastroPost() {
             const data = await response.json();
 
             if (!data || data?.message === 'CEP não encontrado') {
-            alert('CEP não encontrado.');
-            return;
+                alert('CEP não encontrado.');
+                return;
             }
 
             const { city, state, location } = data;
@@ -87,15 +87,15 @@ export default function CadastroPost() {
             let longitude = null;
 
             if (location && Array.isArray(location.coordinates)) {
-            [longitude, latitude] = location.coordinates;
+                [longitude, latitude] = location.coordinates;
             }
 
             setFormInput((prevState) => ({
-            ...prevState,
-            cidade: city,
-            estado: state,
-            latitude: latitude ?? '',
-            longitude: longitude ?? '',
+                ...prevState,
+                cidade: city,
+                estado: state,
+                latitude: latitude ?? '',
+                longitude: longitude ?? '',
             }));
         } catch (error) {
             alert('Erro ao buscar o CEP');
