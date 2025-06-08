@@ -25,7 +25,7 @@ export default function Mapa() {
             <MapViewComponent posts={posts}/>
             <Text style={{ color: "#fff", fontSize: 20, textAlign: "left", marginTop: 10, width: "90%" }}>Pontos Próximos</Text>
             <ScrollView style={{ width: "100%" }}>
-                <MinimalPost />
+                <MinimalPost posts={posts}/>
             </ScrollView>
         </BaseScreen>
     )

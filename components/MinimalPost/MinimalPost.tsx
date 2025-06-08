@@ -1,16 +1,26 @@
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 
-export default function MinimalPost() {
+interface FormInput {
+    nome: string;
+    titulo: string;
+    cidade: string;
+    estado: string;
+}
+
+export default function MinimalPost({posts}: { posts: FormInput[] }) {
     return (
         <View>
-            <View style={styles.container}>
-                <Text style={styles.title}>Título do Post</Text>
-                <Text style={styles.desc}>Descrição breve do post. Este é um exemplo de texto que pode ser substituído.</Text>
-                <TouchableOpacity style={styles.button}>
-                    <Image source={require('../../assets/icons/help_heart.png')} style={{ width: 24, height: 20, tintColor: "#fff" }} />
-                    <Text style={{ color: "#fff", textAlign: "center", fontSize: 16 }}>Mostrar no Mapa</Text>
-                </TouchableOpacity>
-            </View>
+            {posts.map((post, index) => (
+                <View style={styles.container} key={index}>
+                    <Text style={styles.name}>{post.nome}</Text>
+                    <Text style={styles.title}>{post.titulo}</Text>
+                    <Text style={styles.desc}>{post.cidade}, {post.estado.toUpperCase()}</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Image source={require('../../assets/icons/help_heart.png')} style={{ width: 24, height: 20, tintColor: "#fff" }} />
+                        <Text style={{ color: "#fff", textAlign: "center", fontSize: 16 }}>Quero Ajudar</Text>
+                    </TouchableOpacity>
+                </View>
+            ))}
         </View>
     )
 }
@@ -26,10 +36,14 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         padding: 10
     },
-    title: {
+    name: {
         color: "#ffffff",
         fontSize: 18,
         fontWeight: "bold"
+    },
+    title: {
+        color: "#ffffff",
+        fontSize: 14
     },
     desc: {
         color: "#C2C0B6",
