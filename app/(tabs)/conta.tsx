@@ -43,6 +43,7 @@ export default function Conta() {
                     <Text style={styles.infoConta}>Telefone: (11)91234-5678</Text>
                 </View>
             </View>
+            <Link href={"/participantes"} style={styles.linkParticipantes}>Participantes</Link>
         </BaseScreen>
     )
 }
@@ -97,5 +98,13 @@ const styles = StyleSheet.create({
         width: "100%",
         textAlign: "left",
         fontSize: 15
+    },
+    linkParticipantes: {
+        backgroundColor: "#00BAFF",
+        color: "#fff",
+        padding: 5,
+        fontSize: 20,
+        borderRadius: 12,
+        marginTop: 20
     }
 });
