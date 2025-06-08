@@ -3,6 +3,7 @@ import BaseScreen from '../../components/BaseScreen/BaseScreen'
 import { Text, TextInput, TouchableOpacity, View, Image, StyleSheet, Alert } from 'react-native'
 import { Link, router } from 'expo-router';
 import { login } from '../../service/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login() {
 
@@ -10,8 +11,9 @@ export default function Login() {
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
-        const sucess = await login(email, password);
-        if (sucess) {
+        const usuario = await login(email, password);
+        if (usuario) {
+            await AsyncStorage.setItem('usuario', JSON.stringify(usuario));
             router.push('/conta');
         } else {
             Alert.alert('Erro', 'Email ou senha incorretos');

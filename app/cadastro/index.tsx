@@ -54,6 +54,9 @@ export default function Cadastro() {
             usuarios.push(novoUsuario);
 
             await AsyncStorage.setItem("usuariosRecomecar", JSON.stringify(usuarios));
+            await AsyncStorage.setItem("isLoggedIn", "true");
+            await AsyncStorage.setItem("usuarioLogado", JSON.stringify(novoUsuario));
+
 
             alert("Usuário cadastrado com sucesso!");
 
@@ -131,7 +134,7 @@ export default function Cadastro() {
                 
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={() => {}}>
+            <TouchableOpacity style={styles.button}  onPress={handleCadastro}>
                 <Image source={require('../../assets/icons/help_heart.png')} style={{ width: 24, height: 20 }} />
                 <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
