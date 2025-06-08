@@ -4,17 +4,9 @@ import darkMapStyle from '../../data/mapConfig.json';
 import coordsMock from '../../data/coordsMock.json';
 
 interface FormInput {
-    nome: string;
     titulo: string;
-    cep: string;
     cidade: string;
     estado: string;
-    latitude: string;
-    longitude: string;
-    tipoCampanha: string;
-    voluntariosCadastrados: number;
-    voluntariosNecessarios: number;
-    createdAt: string; 
 }
 
 export default function MapViewComponent({posts}: { posts: FormInput[] }) {
