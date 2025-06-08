@@ -3,10 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import BaseScreen from "../../components/BaseScreen/BaseScreen"
 import { useState, useEffect } from "react"
 import { checkLogin, logout } from "../../service/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Conta() {
 
     const [logged, setLogged] = useState<boolean>(false);
+    const [usuario, setUsuario] = useState<any>(null);
 
     useEffect(() => {
         const verify = async () => {
@@ -14,11 +16,16 @@ export default function Conta() {
             if (!isLogged) {
                 router.push("/login");
             } else {
+                const userJson = await AsyncStorage.getItem("usuarioLogado");
+                if (userJson) {
+                    setUsuario(JSON.parse(userJson));
+                }
                 setLogged(true);
             }
         };
         verify();
-    }, [])
+    }, []);
+
 
     const handleLogout = async () => {
         await logout();
@@ -30,8 +37,8 @@ export default function Conta() {
             <View style={styles.container}>
                 <View style={{ marginBottom: 10, flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
                     <View>
-                        <Text style={styles.name}>João Silva</Text>
-                        <Text style={styles.role}>Voluntário</Text>
+                        <Text style={styles.name}>{usuario?.nome}</Text>
+                        <Text style={styles.role}>{usuario?.tipoUsuario}</Text>
                     </View> 
                     <TouchableOpacity onPress={handleLogout}>
                         <Text style={styles.btnLogout}>Sair</Text>
@@ -39,8 +46,8 @@ export default function Conta() {
                 </View>
                 <Text style={styles.infoContaTitle}>Informações da Conta</Text>
                 <View style={styles.infoContaContainer}>
-                    <Text style={styles.infoConta}>Email: qwerty@gmail.com</Text>
-                    <Text style={styles.infoConta}>Telefone: (11)91234-5678</Text>
+                    <Text style={styles.infoConta}>Email: {usuario?.email}</Text>
+                    <Text style={styles.infoConta}>Telefone: {usuario?.telefone}</Text>
                 </View>
             </View>
             <Link href={"/participantes"} style={styles.linkParticipantes}>Participantes</Link>
