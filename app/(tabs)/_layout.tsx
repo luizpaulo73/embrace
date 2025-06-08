@@ -18,7 +18,7 @@ export default function TabsLayout() {
                             tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
                         />
                     ),
-                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14 }
                 }}
             />
             <Tabs.Screen
@@ -35,7 +35,7 @@ export default function TabsLayout() {
                             tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
                         />
                     ),
-                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, }
                 }}
                 />
             <Tabs.Screen
@@ -52,7 +52,7 @@ export default function TabsLayout() {
                             tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
                         />
                     ),
-                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, }
                 }}
                 />
             <Tabs.Screen
@@ -69,7 +69,7 @@ export default function TabsLayout() {
                             tintColor: focused ? '#00BAFF' : '#C2C0B6',}}
                         />
                     ),
-                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14, fontFamily: "K2D_700Bold" }
+                    tabBarLabelStyle: { color: "#C2C0B6", fontSize: 14 }
                 }}
                 />
         </Tabs>

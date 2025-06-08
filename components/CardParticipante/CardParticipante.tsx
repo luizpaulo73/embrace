@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     infos: {
         fontSize: 18,
         color: "#fff",
-        fontFamily: "K2D_700Bold",
     },
     image: {
         width: 30,

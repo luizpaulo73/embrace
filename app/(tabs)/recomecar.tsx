@@ -55,7 +55,6 @@ const style = StyleSheet.create({
     textAdd: {
         fontSize: 40,
         color: "#fff",
-        fontFamily: "K2D_700Bold",
         textAlign: "center",
         verticalAlign: "middle",
         lineHeight: 60,

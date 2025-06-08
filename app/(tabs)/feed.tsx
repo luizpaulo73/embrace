@@ -65,7 +65,6 @@ const style = StyleSheet.create({
         color: "#fff",
         fontSize: 16,
         textAlign: "center",
-        fontFamily: "K2D_700Bold",
     },
     addButton: {
         position: "absolute",
@@ -79,7 +78,6 @@ const style = StyleSheet.create({
     textAdd: {
         fontSize: 40,
         color: "#fff",
-        fontFamily: "K2D_700Bold",
         textAlign: "center",
         verticalAlign: "middle",
         lineHeight: 60,

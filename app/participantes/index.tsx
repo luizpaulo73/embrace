@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         color: "#ffffff",
         fontSize: 20,
         textAlign: "center",
-        fontFamily: "K2D_700Bold",
         textAlignVertical: "center",
     }
 })
