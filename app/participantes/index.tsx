@@ -1,7 +1,8 @@
-import { Linking, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Linking, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import BaseScreen from '../../components/BaseScreen/BaseScreen';
 import CardParticipante from '../../components/CardParticipante/CardParticipante';
 import dados from "../../data/participantes.json";
+import { router } from 'expo-router';
 
 export default function Participantes() {
 
@@ -11,6 +12,10 @@ export default function Participantes() {
 
     return (
         <BaseScreen platform='embrace'>
+            <TouchableOpacity onPress={() => router.push("/conta")} style={{width: "90%", flexDirection: "row", alignItems: "center", gap: 10}}>
+                <Image source={require("../../assets/icons/back.png")} style={{width: 20, height: 14}}/>
+                <Text style={{fontSize: 16, color: "#ffffff"}}>Voltar</Text>
+            </TouchableOpacity>
             {dados.map((dado, index) => (
                 <CardParticipante dados={dado} key={index} />
             ))}
