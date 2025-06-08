@@ -8,6 +8,71 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 export default function Cadastro() {
 
+    const [formInput, setFormInput] = useState({
+        nome: '',
+        email: '',
+        senha: '',
+        telefone: '',
+        tipoUsuario: '',
+    });
+
+    async function handleCadastro() {
+
+        if (!formInput.nome.trim()) {
+            alert("Preencha o nome.");
+            return;
+        }
+
+        if (!formInput.email.trim() || !formInput.email.includes("@")) {
+            alert("Preencha um email válido.");
+            return;
+        }
+
+        if (!formInput.senha.trim() || formInput.senha.length < 6) {
+            alert("A senha deve ter ao menos 6 caracteres.");
+            return;
+        }
+
+        if (!formInput.telefone.trim() || formInput.telefone.length < 8) {
+            alert("Preencha um telefone válido.");
+            return;
+        }
+
+        try {
+            let usuarios = [];
+
+            const stored = await AsyncStorage.getItem("usuariosRecomecar");
+            if (stored) {
+                usuarios = JSON.parse(stored);
+            }
+
+            const novoUsuario = {
+                ...formInput,
+                tipoUsuario: valueType
+            };
+
+            usuarios.push(novoUsuario);
+
+            await AsyncStorage.setItem("usuariosRecomecar", JSON.stringify(usuarios));
+
+            alert("Usuário cadastrado com sucesso!");
+
+            setFormInput({
+                nome: '',
+                email: '',
+                senha: '',
+                telefone: '',
+                tipoUsuario: ''
+            });
+
+            router.push("/login");
+
+        } catch (error) {
+            alert("Erro ao cadastrar.");
+            console.error(error);
+        }
+    }
+
     const [valueType, setValueType] = useState(null);
     const [openType, setOpenType] = useState(false);
     const [itemsType, setItemsType] = useState(tipoUsuarios);
@@ -22,16 +87,32 @@ export default function Cadastro() {
             </View>
             <View style={styles.form}>
                 <Text style={styles.inputLabel}>Nome</Text>
-                <TextInput style={styles.input}/>
+                <TextInput
+                    style={styles.input}
+                    value={formInput.nome}
+                    onChangeText={(text) => setFormInput({ ...formInput, nome: text })}
+                />
 
                 <Text style={styles.inputLabel}>Email</Text>
-                <TextInput style={styles.input}/>
+                <TextInput
+                    style={styles.input}
+                    value={formInput.email}
+                    onChangeText={(text) => setFormInput({ ...formInput, email: text })}
+                />
 
                 <Text style={styles.inputLabel}>Senha</Text>
-                <TextInput style={styles.input}/>
+                <TextInput 
+                    style={styles.input}
+                    value={formInput.senha}
+                    onChangeText={(text) => setFormInput({ ...formInput, senha: text })}
+                />
 
                 <Text style={styles.inputLabel}>Telefone</Text>
-                <TextInput style={styles.input}/>
+                <TextInput 
+                    style={styles.input}
+                    value={formInput.telefone}
+                    onChangeText={(text) => setFormInput({ ...formInput, telefone: text })}
+                />
 
                 <Text style={styles.inputLabel}>Tipo de Usuário</Text>
                 <DropDownPicker
