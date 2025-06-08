@@ -58,7 +58,7 @@ export default function Post({ formInput }: PostProps) {
                 style={{ width: "100%", borderRadius: 16, marginTop: 10 }}
             />
             <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 5 }}>
-                <TouchableOpacity style={styles.button} onPress={() => router.push({pathname: "/post/mapa", params: {latitude: formInput.latitude, longitude: formInput.longitude}})}>
+                <TouchableOpacity style={styles.button}>
                     <Image
                         source={require("../../assets/icons/help_heart.png")}
                         style={{ width: 18, height: 15 }}
