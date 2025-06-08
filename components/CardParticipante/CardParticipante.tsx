@@ -44,20 +44,20 @@ export default function CardParticipante({dados} : CardParticipanteProps) {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: "#030C20",
+        backgroundColor: "#30302E",
         width: "90%",
         height: 150,
-        borderRadius: 5,
+        borderRadius: 12,
         paddingLeft: 10,
         marginTop: 10,
         borderTopWidth: 0.5,
         borderRightWidth: 0.5,
         borderBottomWidth: 0.5,
         borderLeftWidth: 5,
-        borderRightColor: "#94A3B8",
-        borderBottomColor: "#94A3B8",
-        borderTopColor: "#94A3B8",
-        borderLeftColor: "#00CCCF",
+        borderRightColor: "#65645F",
+        borderBottomColor: "#65645F",
+        borderTopColor: "#65645F",
+        borderLeftColor: "#00BAFF",
         alignItems: "center",
         flexDirection: "row"
     },
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         gap: 8
     },
     infoRm: {
-        color: "#94A3B8",
+        color: "#C2C0B6",
         fontSize: 16,
         paddingLeft: 5
     },
@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
         height: 125,
         borderRadius: 100,
         borderWidth: 1,
-        borderColor: "#00CCCF",
+        borderColor: "#00BAFF",
     }
 })
