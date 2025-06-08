@@ -38,6 +38,7 @@ export default function CadastroPost() {
         const postWithDate = {
             ...formInput,
             createdAt: new Date().toISOString(),
+            tipoCampanha: valueType
         };
 
         data.push(postWithDate);
