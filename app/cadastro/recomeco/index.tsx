@@ -19,34 +19,73 @@ export default function CadastroPost() {
         cep: '',
         cidade: '',
         estado: '',
+        tipoCampanha: '',
         createdAt: ''
     });
 
-    async function handleCreatePost() {
-        let data = [];
 
-        if (await AsyncStorage.getItem('postsRecomecar') != null) {
-            data = JSON.parse(await AsyncStorage.getItem('postsRecomecar') || '[]');
+    async function handleCreatePost() {
+
+        if (!formInput.titulo.trim()) {
+            alert('Preencha o título.');
+            return;
         }
 
-        const postWithDate = {
-            ...formInput,
-            createdAt: new Date().toISOString(),
-        };
+        const cepLimpo = formInput.cep.replace(/\D/g, '');
+        if (!cepLimpo || cepLimpo.length !== 8) {
+            alert('Preencha um CEP válido com 8 números.');
+            return;
+        }
 
-        data.push(postWithDate);
-        await AsyncStorage.setItem('postsRecomecar', JSON.stringify(data));
+        if (!formInput.cidade.trim()) {
+            alert('Preencha a cidade.');
+            return;
+        }
 
-        alert('Post criado com sucesso!');
+        if (!formInput.estado.trim()) {
+            alert('Preencha o estado.');
+            return;
+        }
 
-        setFormInput({
-            titulo: '',
-            cep: '',
-            cidade: '',
-            estado: '',
-            createdAt: ''
-        });
+        if (!formInput.tipoCampanha) {
+            alert('Selecione o tipo da campanha.');
+            return;
+        }
+
+        try {
+            let data = [];
+
+            const stored = await AsyncStorage.getItem('postsRecomecar');
+            if (stored) {
+                data = JSON.parse(stored);
+            }
+
+            const postWithDate = {
+                ...formInput,
+                createdAt: new Date().toISOString(),
+            };
+
+            data.push(postWithDate);
+            await AsyncStorage.setItem('postsRecomecar', JSON.stringify(data));
+
+            alert('Post criado com sucesso!');
+
+            setFormInput({
+                titulo: '',
+                cep: '',
+                cidade: '',
+                estado: '',
+                tipoCampanha: '',
+                createdAt: ''
+            });
+            setValueType(null);
+
+        } catch (error) {
+            alert('Erro ao salvar o post.');
+            console.error(error);
+        }
     }
+
 
     const [valueType, setValueType] = useState(null);
     const [openType, setOpenType] = useState(false);
