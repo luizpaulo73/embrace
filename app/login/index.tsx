@@ -24,7 +24,7 @@ export default function Login() {
         <BaseScreen platform="embrace">
             <View style={{ width: '100%', justifyContent: "center", alignItems: "center" }}>
                 <View style={{ width: '90%', flexDirection: "row", alignItems: "center", gap: 10, height: 50 }}>
-                    <TouchableOpacity onPress={() => router.push("/")}>
+                    <TouchableOpacity onPress={() => router.push("/feed")}>
                         <Image source={require("../../assets/icons/back.png")} style={{width: 20, height: 14, marginTop: 20}}/>
                     </TouchableOpacity>
                     <Text style={styles.title}>Bem Vindo de Volta!</Text>
