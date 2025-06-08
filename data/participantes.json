@@ -1,0 +1,23 @@
+[
+    {
+        "nome": "Enzo Giuseppe Marsola",
+        "rm": "556310",
+        "linkedin": "https://www.linkedin.com/in/enzomarsola/",
+        "github": "https://github.com/MarsoL4",
+        "foto": "enzo.jpg"
+    },
+    {
+        "nome": "Luiz Paulo Freitas Fernandes",
+        "rm": "555497",
+        "linkedin": "https://www.linkedin.com/in/luizpaulo73/",
+        "github": "https://github.com/luizpaulo73",
+        "foto": "luiz.jpg"
+    },
+    {
+        "nome": "Rafael de Souza Pinto",
+        "rm": "555130",
+        "linkedin": "https://www.linkedin.com/in/rafael-souza-fiap/",
+        "github": "https://github.com/RafaellSouzaPinto",
+        "foto": "rafael.jpg"
+    }
+]
