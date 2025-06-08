@@ -1,8 +1,23 @@
-import { View, StyleSheet } from "react-native";
-import MapView from "react-native-maps";
+import { View, StyleSheet, Text } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 import darkMapStyle from '../../data/mapConfig.json';
+import coordsMock from '../../data/coordsMock.json';
 
-export default function MapViewComponent() {
+interface FormInput {
+    nome: string;
+    titulo: string;
+    cep: string;
+    cidade: string;
+    estado: string;
+    latitude: string;
+    longitude: string;
+    tipoCampanha: string;
+    voluntariosCadastrados: number;
+    voluntariosNecessarios: number;
+    createdAt: string; 
+}
+
+export default function MapViewComponent({posts}: { posts: FormInput[] }) {
     return (
         <View style={styles.container}>
             <MapView
@@ -14,7 +29,26 @@ export default function MapViewComponent() {
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}
-            />
+            >
+                {posts.map((post, index) => {
+                    const coords = coordsMock[index];
+
+                    if (!coords) return null;
+
+                    return (
+                        <Marker
+                            key={index}
+                            coordinate={{
+                                latitude: coords.latitude,
+                                longitude: coords.longitude,
+                            }}
+                            title={post.titulo}
+                            description={`${post.cidade}, ${post.estado.toUpperCase()}`}>
+                        </Marker>
+                    );
+                })}
+
+            </MapView>
         </View>
     );
 }
