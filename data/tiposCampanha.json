@@ -1,5 +1,5 @@
 [
-    { "label": "Saúde", "value": "saude" },
-    { "label": "Frio", "value": "frio" },
-    { "label": "Doação", "value": "doacao" }
+    { "label": "Saúde", "value": "Saúde" },
+    { "label": "Frio", "value": "Frio" },
+    { "label": "Doação", "value": "Doação" }
 ]
