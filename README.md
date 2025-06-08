@@ -11,6 +11,10 @@
 - **Nome:** Rafael de Souza Pinto  
   **RM:** 555130 - 2TDSPY
 
+## Link Vídeo Apresentação Mobile
+
+#### https://youtu.be/5OwAvp3ixK8
+
 ## Descrição do Projeto
 
 #### &nbsp;&nbsp;&nbsp;&nbsp;A Embrace cria um hub digital único que integra todos os atores envolvidos na resposta a eventos extremos — ONGs, coletivos, voluntários e as próprias comunidades afetadas. Em vez de esforços dispersos, toda a comunicação, cadastro de demandas e oferta de recursos flui por uma só interface, garantindo que cada campanha ou chamado de socorro seja imediatamente visível a quem estiver disponível para ajudar, reduzindo lacunas e sobreposições.
