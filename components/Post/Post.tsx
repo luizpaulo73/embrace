@@ -26,7 +26,7 @@ export default function Post({ formInput }: PostProps) {
     return (
         <View style={styles.container}>
             <View style={{ marginBottom: 5, flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
-                <View style={{ flexDirection: "row" }}>
+                <View style={{ flexDirection: "row", width: "80%" }}>
                     <View style={styles.profileContainer}>
                         <Image
                             source={require("../../assets/profilePictures/hospital.png")}
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontSize: 20,
         marginLeft: 8,
+        width: "80%"
     }, 
     profileContainer: {
         alignItems: "center",
