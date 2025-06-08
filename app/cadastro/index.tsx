@@ -1,8 +1,17 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from "react-native";
 import BaseScreen from "../../components/BaseScreen/BaseScreen";
 import { Link, router } from "expo-router";
+import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import tipoUsuarios from "../../data/tipoUsuario.json";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export default function Cadastro() {
+
+    const [valueType, setValueType] = useState(null);
+    const [openType, setOpenType] = useState(false);
+    const [itemsType, setItemsType] = useState(tipoUsuarios);
+
     return (
         <BaseScreen platform="embrace">
             <View style={{ width: '90%', flexDirection: "row", alignItems: "center", gap: 10, height: 50 }}>
@@ -24,16 +33,20 @@ export default function Cadastro() {
                 <Text style={styles.inputLabel}>Telefone</Text>
                 <TextInput style={styles.input}/>
 
-                <View style={{ width: '90%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                    <View style={{ width: '70%' }}>
-                        <Text style={styles.inputLabel}>Cidade</Text>
-                        <TextInput style={styles.input}/>
-                    </View>
-                    <View style={{ width: '30%' }}>
-                        <Text style={styles.inputLabel}>Estado</Text>
-                        <TextInput style={styles.input}/>
-                    </View> 
-                </View>
+                <Text style={styles.inputLabel}>Tipo de Usuário</Text>
+                <DropDownPicker
+                    open={openType}
+                    value={valueType}
+                    items={itemsType}
+                    setOpen={setOpenType}
+                    setValue={setValueType}
+                    setItems={setItemsType}
+                    placeholder="Selecione o tipo do usuário"
+                    style={styles.input}
+                    dropDownContainerStyle={styles.dropdownContainer}
+                    textStyle={styles.labelDropdown}
+                    zIndex={2000}
+                />
                 
             </View>
 
@@ -60,7 +73,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     form: {
-        width: '100%',
+        width: '90%',
         backgroundColor: '#262624',
         justifyContent: 'center', 
         alignItems: 'center',
@@ -71,7 +84,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#30302E',
         borderWidth: 1,
         paddingHorizontal: 10,
-        width: '90%',
+        width: '100%',
         borderRadius: 16,
         color: '#FFFFFF',
         marginTop: 5,
@@ -80,7 +93,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 16,
         textAlign: 'left',
-        width: '90%',
+        width: '100%',
         marginTop: 15,
     },
     button: {
@@ -108,5 +121,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         marginTop: 10,
-    }
+    },
+    dropdownContainer: {
+        backgroundColor: '#30302E',
+        borderColor: '#65645F',
+        width: "100%",
+        borderWidth: 1,
+        alignSelf: 'center',
+    },
+    labelDropdown: {
+        color: '#FFFFFF',
+        fontSize: 16,
+        textAlign: 'left',
+        width: '100%',
+    },
 });
